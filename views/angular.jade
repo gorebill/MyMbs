@@ -1,0 +1,46 @@
+//
+	Created by gorebill on 12/2/15.
+
+//- 参考http://jade-lang.com/
+//- http://jade-lang.com/reference/plain-text/
+
+extends layout
+
+
+block title
+	script.
+		var myApp = angular.module('myApp', []);
+		myApp.controller('MyController', ['$scope', function ($scope) {
+			$scope.amount = 1;
+			($scope.amountChange = function () {
+				var amount = parseInt($scope.amount);
+				$scope.parsedAmount = amount;
+				var tmp = [];
+				for (var i = 0; i < amount; i++) {
+				tmp.push(i);
+			}
+			$scope.parsedAmountInArr = tmp;
+			})();
+		}]);
+
+
+block content
+
+
+	div.form-group(ng-controller='MyController', style='width:400px;')
+		div.input-group
+			lable.input-group-addon Amount:
+			input.form-control(ng-change="amountChange()", ng-model="amount")
+
+
+		p
+		| How much battery: {{parsedAmount}}
+		| <table class='table'>
+		| <tr ng-repeat="b in parsedAmountInArr">
+		|   <td>Battery-{{b+1}}:</td>
+		|	<td> <input></td>
+		| </tr>
+		| <table>
+
+
+
