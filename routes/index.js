@@ -13,7 +13,7 @@ router.get('/angular', function (req, res, next) {
     res.render('angular');
 });
 
-router.get('/user/:id([0-9]+)', function (req, res) {
+router.get('/account/:id([0-9]+)', function (req, res) {
     res.send('user ' + req.params.id);
 });
 

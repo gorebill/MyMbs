@@ -7,6 +7,21 @@
 var app = require('../app');
 var debug = require('debug')('MyMembership:server');
 var http = require('http');
+var mongoose = require('mongoose');
+
+/**
+ * Connect to database
+ * 参考: http://mongoosejs.com/docs/index.html
+ * 参考: http://mongoosejs.com/docs/connections.html
+ */
+mongoose.connect('mongodb://mymbsadmin:guangya1986@37.59.186.240/admin?poolSize=20');//default poolSize=4
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+    console.log('yay! mongodb is ready.');
+});
+
 
 /**
  * Get port from environment and store in Express.
@@ -28,6 +43,8 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+console.log('Server running on http://127.0.0.1:'+port);
 
 /**
  * Normalize a port into a number, string, or false.

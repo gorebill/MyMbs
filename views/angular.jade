@@ -26,21 +26,21 @@ block title
 
 block content
 
+	div(ng-app='myApp')
+		div.form-group(ng-controller='MyController', style='width:400px;')
+			div.input-group
+				lable.input-group-addon Amount:
+				input.form-control(ng-change="amountChange()", ng-model="amount")
 
-	div.form-group(ng-controller='MyController', style='width:400px;')
-		div.input-group
-			lable.input-group-addon Amount:
-			input.form-control(ng-change="amountChange()", ng-model="amount")
 
-
-		p
-		| How much battery: {{parsedAmount}}
-		| <table class='table'>
-		| <tr ng-repeat="b in parsedAmountInArr">
-		|   <td>Battery-{{b+1}}:</td>
-		|	<td> <input></td>
-		| </tr>
-		| <table>
+			p
+			| How much battery: {{parsedAmount}}
+			| <table class='table'>
+			| <tr ng-repeat="b in parsedAmountInArr">
+			|   <td>Battery-{{b+1}}:</td>
+			|	<td> <input></td>
+			| </tr>
+			| <table>
 
 
 
